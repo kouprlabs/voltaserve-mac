@@ -94,7 +94,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 898EE5DF2E0701620066013E /* Build configuration list for PBXProject "Voltaserve" */;
+			buildConfigurationList = 898EE5DF2E0701620066013E /* Build configuration list for PBXProject "VoltaserveMac" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -262,7 +262,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Sources/Voltaserve.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Sources/VoltaserveMac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -291,7 +291,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Sources/Voltaserve.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Sources/VoltaserveMac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -318,7 +318,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		898EE5DF2E0701620066013E /* Build configuration list for PBXProject "Voltaserve" */ = {
+		898EE5DF2E0701620066013E /* Build configuration list for PBXProject "VoltaserveMac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				898EE5F02E0701630066013E /* Debug */,
