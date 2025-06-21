@@ -12,7 +12,7 @@ import SwiftData
 import SwiftUI
 
 @main
-struct VoltaserveApp: App {
+struct VoltaserveMacApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self
