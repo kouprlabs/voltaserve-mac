@@ -10,6 +10,7 @@
 
 import SwiftData
 import SwiftUI
+import VoltaserveCore
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
@@ -20,7 +21,22 @@ struct ContentView: View {
             List {
                 ForEach(items) { item in
                     NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
+                        WorkspaceRow(
+                            .init(
+                                id: UUID().uuidString,
+                                name: item.timestamp.pretty,
+                                permission: .owner,
+                                storageCapacity: 100_000_000,
+                                rootID: UUID().uuidString,
+                                organization: .init(
+                                    id: UUID().uuidString,
+                                    name: "Just My Organization",
+                                    permission: .owner,
+                                    createTime: Date().description
+                                ),
+                                createTime: Date().pretty
+                            )
+                        )
                     } label: {
                         Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
                     }
@@ -38,6 +54,7 @@ struct ContentView: View {
         } detail: {
             Text("Select an item")
         }
+        .font(.custom(VOMetrics.bodyFontFamily, size: 13))
     }
 
     private func addItem() {

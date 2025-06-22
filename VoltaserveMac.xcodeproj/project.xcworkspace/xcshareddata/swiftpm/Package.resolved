@@ -1,13 +1,13 @@
 {
-  "originHash" : "5d286d3227d2db2ac9f2cd3b8dd9e60c0414fc87be44c6edfa9aa2499b3124e7",
+  "originHash" : "929b804a1c3813fe9a6c668ddff89eec59ce6828a010b9db3f139d9963680b4a",
   "pins" : [
     {
-      "identity" : "voltaserve-core",
+      "identity" : "kingfisher",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/kouprlabs/voltaserve-core.git",
+      "location" : "https://github.com/onevcat/Kingfisher.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "2c812bbac150163397275e1b9fd27b1da38f8008"
+        "revision" : "010a06c4387cea2d13606222b6c08e0454e6dd2d",
+        "version" : "8.3.3"
       }
     }
   ],
