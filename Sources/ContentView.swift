@@ -54,7 +54,7 @@ struct ContentView: View {
         } detail: {
             Text("Select an item")
         }
-        .font(.custom(VOMetrics.bodyFontFamily, size: 13))
+        .font(.custom(VOMetrics.bodyFontFamily, size: VOMetrics.bodyFontSizeMac))
     }
 
     private func addItem() {
