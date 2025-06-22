@@ -28,7 +28,7 @@ struct VoltaserveMacApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            VoltaserveMac()
         }
         .modelContainer(sharedModelContainer)
     }

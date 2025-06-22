@@ -12,7 +12,7 @@ import SwiftData
 import SwiftUI
 import VoltaserveCore
 
-struct ContentView: View {
+struct VoltaserveMac: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
 
@@ -74,6 +74,6 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    VoltaserveMac()
         .modelContainer(for: Item.self, inMemory: true)
 }
