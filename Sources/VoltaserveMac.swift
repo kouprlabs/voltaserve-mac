@@ -13,67 +13,156 @@ import SwiftUI
 import VoltaserveCore
 
 struct VoltaserveMac: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @EnvironmentObject private var sessionStore: SessionStore
+    @StateObject var appearanceStore = AppearanceStore()
+    @Environment(\.modelContext) private var context
+    @State private var timer: Timer?
+    @State private var signInIsPresented = false
+    @State private var selection: TabType?
+    private var extensions = Extensions()
 
-    var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        WorkspaceRow(
-                            .init(
-                                id: UUID().uuidString,
-                                name: item.timestamp.pretty,
-                                permission: .owner,
-                                storageCapacity: 100_000_000,
-                                rootID: UUID().uuidString,
-                                organization: .init(
-                                    id: UUID().uuidString,
-                                    name: "Just My Organization",
-                                    permission: .owner,
-                                    createTime: Date().description
-                                ),
-                                createTime: Date().pretty
-                            )
-                        )
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+    public enum TabType: Hashable {
+        case workspaces
+        case groups
+        case organizations
+        case custom(String)
+    }
+
+    public struct TabItem {
+        public let title: String
+        public let systemImageName: String
+        public let tabType: TabType
+        public let view: AnyView
+
+        public init(title: String, systemImageName: String, tabType: TabType, view: AnyView) {
+            self.title = title
+            self.systemImageName = systemImageName
+            self.tabType = tabType
+            self.view = view
+        }
+    }
+
+    public class Extensions: ObservableObject {
+        @Published public var tabs = Tabs()
+        public var signIn: () -> AnyView
+
+        public struct Tabs {
+            public let selection: TabType?
+            public let items: [TabItem]?
+
+            public init(selection: TabType? = nil, items: [TabItem]? = nil) {
+                self.selection = selection
+                self.items = items
+            }
+        }
+
+        public init<SignInView: View>(
+            tabs: Tabs? = nil,
+            @ViewBuilder signIn: @escaping () -> SignInView = { EmptyView() }
+        ) {
+            if let tabs = tabs {
+                self.tabs = tabs
+            }
+            self.signIn = { AnyView(signIn()) }
+        }
+    }
+
+    public init(_ extensions: Extensions? = nil) {
+        if let extensions = extensions {
+            self.extensions = extensions
+        }
+    }
+
+    public var body: some View {
+        if #available(iOS 18.0, macOS 15.0, *) {
+            TabView(selection: $selection) {
+                if let tabs = self.extensions.tabs.items {
+                    ForEach(tabs, id: \.tabType) { tab in
+                        Tab(tab.title, systemImage: tab.systemImageName, value: tab.tabType) {
+                            tab.view
+                        }
                     }
                 }
-                .onDelete(perform: deleteItems)
+                Tab("Files", systemImage: "internaldrive", value: TabType.workspaces) {
+                    WorkspaceList()
+                }
+                Tab("Groups", systemImage: "person.2.fill", value: TabType.groups) {
+                    GroupList()
+                }
+                Tab("Organizations", systemImage: "flag", value: TabType.organizations) {
+                    OrganizationList()
+                }
             }
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-            .toolbar {
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+            .onAppear {
+                if let session = sessionStore.loadFromKeyChain() {
+                    if session.isExpired {
+                        sessionStore.session = nil
+                        sessionStore.deleteFromKeychain()
+                        signInIsPresented = true
+                    } else {
+                        sessionStore.session = session
+                    }
+                } else {
+                    signInIsPresented = true
+                }
+
+                startSessionTimer()
+            }
+            .onDisappear { stopSessionTimer() }
+            .onChange(of: sessionStore.session) { oldSession, newSession in
+                if oldSession != nil, newSession == nil {
+                    stopSessionTimer()
+                    // This is hack to mitigate a SwiftUI bug that causes `fullScreenCover` to dismiss
+                    // itself unexpectedly without user interaction or a direct code-triggered dismissal.
+                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                        DispatchQueue.main.async {
+                            signInIsPresented = true
+                        }
                     }
                 }
             }
-        } detail: {
-            Text("Select an item")
+            #if os(iOS)
+                .fullScreenCover(isPresented: $signInIsPresented) {
+                    SignIn(extensions: self.extensions.signIn) {
+                        startSessionTimer()
+                        signInIsPresented = false
+                    }
+                }
+            #elseif os(macOS)
+                .sheet(isPresented: $signInIsPresented) {
+                    SignIn(extensions: self.extensions.signIn) {
+                        startSessionTimer()
+                        signInIsPresented = false
+                    }
+                }
+            #endif
+            .fontSize(.body)
+            .environmentObject(extensions)
+            .environmentObject(appearanceStore)
+            .tint(appearanceStore.accentColor)
+            .modelContainer(for: Server.self)
         }
-        .font(.custom(VOMetrics.bodyFontFamily, size: VOMetrics.bodyFontSizeMac))
     }
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
+    private func startSessionTimer() {
+        guard timer == nil else { return }
+        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
+            Task.detached {
+                guard await sessionStore.session != nil else { return }
+                if let session = await sessionStore.session, session.isExpired {
+                    if let newSession = try await sessionStore.refreshSessionIfNecessary() {
+                        await MainActor.run {
+                            sessionStore.session = newSession
+                            sessionStore.saveInKeychain(newSession)
+                        }
+                    }
+                }
             }
         }
     }
-}
 
-#Preview {
-    VoltaserveMac()
-        .modelContainer(for: Item.self, inMemory: true)
+    private func stopSessionTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
 }
