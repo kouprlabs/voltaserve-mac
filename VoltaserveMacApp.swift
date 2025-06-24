@@ -8,18 +8,49 @@
 // by the GNU Affero General Public License v3.0 only, included in the file
 // AGPL-3.0-only in the root of this repository.
 
-import SwiftData
 import SwiftUI
 import VoltaserveCore
 
+@available(macOS 15.0, *)
 @main
 struct VoltaserveMacApp: App {
-    @StateObject private var sessionStore = SessionStore()
-
     var body: some Scene {
-        WindowGroup {
+        Window("Toolbox", id: "toolbox") {
             VoltaserveMac()
-                .environmentObject(sessionStore)
+                .frame(minWidth: 400, minHeight: 800)
+        }
+        .defaultSize(width: 400, height: 800)
+        .windowIdealSize(.fitToContent)
+        .windowStyle(.hiddenTitleBar)
+
+        WindowGroup(for: VOWorkspace.Entity.self) { $workspace in
+            if let workspace {
+                WorkspaceWindow(
+                    workspace,
+                    sidebarSelection: .constant(.browse),
+                    columnVisibility: .constant(.doubleColumn)
+                )
+            }
+        }
+
+        WindowGroup(for: VOGroup.Entity.self) { $group in
+            if let group {
+                GroupWindow(
+                    group,
+                    sidebarSelection: .constant(.members),
+                    columnVisibility: .constant(.doubleColumn)
+                )
+            }
+        }
+
+        WindowGroup(for: VOOrganization.Entity.self) { $organization in
+            if let organization {
+                OrganizationWindow(
+                    organization,
+                    sidebarSelection: .constant(.members),
+                    columnVisibility: .constant(.doubleColumn)
+                )
+            }
         }
     }
 }
