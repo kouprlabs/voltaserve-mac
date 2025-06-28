@@ -21,8 +21,11 @@ struct VoltaserveMacApp: App {
 
     var body: some Scene {
         Window("Sign In", id: WindowID.signIn) {
-            SignIn()
-                .frame(minWidth: 500, minHeight: 500)
+            SignIn(onCompletion: {
+                dismissWindow(id: WindowID.signIn)
+                openWindow(id: WindowID.toolbox)
+            })
+            .frame(minWidth: 500, minHeight: 500)
         }
         .defaultSize(width: 500, height: 500)
         .windowIdealSize(.fitToContent)
@@ -64,6 +67,8 @@ struct VoltaserveMacApp: App {
         .defaultSize(width: 400, height: 800)
         .windowIdealSize(.fitToContent)
         .windowStyle(.hiddenTitleBar)
+        .environmentObject(sessionStore)
+        .modelContainer(for: Server.self)
 
         WindowGroup(for: VOWorkspace.Entity.self) { $workspace in
             if let workspace {
@@ -94,12 +99,5 @@ struct VoltaserveMacApp: App {
                 )
             }
         }
-    }
-
-    enum WindowID {
-        static let toolbox = "toolbox"
-        static let signIn = "sign-in"
-        static let signUp = "sign-up"
-        static let forgotPassword = "forgot-password"
     }
 }
