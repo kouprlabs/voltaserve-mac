@@ -1,0 +1,23 @@
+{
+  "LABEL": {
+    "name": "Title needs formatting!",
+    "color": "EEEEEE"
+  },
+  "CHECKS": {
+    "prefixes": [
+      "fix:",
+      "feat:",
+      "chore:",
+      "docs:",
+      "ci:",
+      "refactor:",
+      "perf:",
+      "test:"
+    ]
+  },
+  "MESSAGES": {
+    "success": "All OK",
+    "failure": "Failing title test!",
+    "notice": ""
+  }
+}

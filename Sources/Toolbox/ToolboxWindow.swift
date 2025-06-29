@@ -12,6 +12,9 @@ import SwiftUI
 import VoltaserveCore
 
 struct ToolboxWindow: View {
+    @EnvironmentObject private var sessionStore: SessionStore
+    @Environment(\.openWindow) private var openWindow
+    @Environment(\.dismissWindow) private var dismissWindow
     @State private var accountPopoverIsPresented = false
 
     var body: some View {
@@ -31,6 +34,13 @@ struct ToolboxWindow: View {
                             .padding()
                     }
                 }
+            }
+            .onAppear {
+                sessionOrSignOut(
+                    sessionStore: sessionStore,
+                    openWindow: openWindow,
+                    dismissWindow: dismissWindow
+                )
             }
     }
 }
