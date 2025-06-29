@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		89B47BF92E07F5D5002C5C9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89B47BF02E07F5D5002C5C9C /* Assets.xcassets */; };
-		89FE5CCE2E1131CB009AC575 /* VoltaserveCore in Frameworks */ = {isa = PBXBuildFile; productRef = 89FE5CCD2E1131CB009AC575 /* VoltaserveCore */; };
+		89FE5D222E113C71009AC575 /* VoltaserveCore in Frameworks */ = {isa = PBXBuildFile; productRef = 89FE5D212E113C71009AC575 /* VoltaserveCore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89FE5CCE2E1131CB009AC575 /* VoltaserveCore in Frameworks */,
+				89FE5D222E113C71009AC575 /* VoltaserveCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,12 +82,7 @@
 			);
 			name = Voltaserve;
 			packageProductDependencies = (
-				8987EFD82E07175E009486E7 /* VoltaserveCore */,
-				8913BC952E07E30A000D8FE2 /* VoltaserveCore */,
-				8913BCB32E07E91E000D8FE2 /* VoltaserveCore */,
-				89562EE72E09F43C00AB1580 /* VoltaserveCore */,
-				8971885B2E0DA2FB0075EF12 /* VoltaserveCore */,
-				89FE5CCD2E1131CB009AC575 /* VoltaserveCore */,
+				89FE5D212E113C71009AC575 /* VoltaserveCore */,
 			);
 			productName = VoltaserveMac;
 			productReference = 898EE5E42E0701630066013E /* Voltaserve.app */;
@@ -118,7 +113,7 @@
 			mainGroup = 898EE5DB2E0701620066013E;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				89FE5CCC2E1131CB009AC575 /* XCRemoteSwiftPackageReference "voltaserve-core" */,
+				89FE5D202E113C71009AC575 /* XCRemoteSwiftPackageReference "voltaserve-core" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 898EE5E52E0701630066013E /* Products */;
@@ -356,7 +351,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		89FE5CCC2E1131CB009AC575 /* XCRemoteSwiftPackageReference "voltaserve-core" */ = {
+		89FE5D202E113C71009AC575 /* XCRemoteSwiftPackageReference "voltaserve-core" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kouprlabs/voltaserve-core.git";
 			requirement = {
@@ -367,29 +362,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8913BC952E07E30A000D8FE2 /* VoltaserveCore */ = {
+		89FE5D212E113C71009AC575 /* VoltaserveCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = VoltaserveCore;
-		};
-		8913BCB32E07E91E000D8FE2 /* VoltaserveCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = VoltaserveCore;
-		};
-		89562EE72E09F43C00AB1580 /* VoltaserveCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = VoltaserveCore;
-		};
-		8971885B2E0DA2FB0075EF12 /* VoltaserveCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = VoltaserveCore;
-		};
-		8987EFD82E07175E009486E7 /* VoltaserveCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = VoltaserveCore;
-		};
-		89FE5CCD2E1131CB009AC575 /* VoltaserveCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 89FE5CCC2E1131CB009AC575 /* XCRemoteSwiftPackageReference "voltaserve-core" */;
+			package = 89FE5D202E113C71009AC575 /* XCRemoteSwiftPackageReference "voltaserve-core" */;
 			productName = VoltaserveCore;
 		};
 /* End XCSwiftPackageProductDependency section */
