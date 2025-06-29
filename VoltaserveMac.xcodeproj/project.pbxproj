@@ -7,12 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8971885C2E0DA2FB0075EF12 /* VoltaserveCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8971885B2E0DA2FB0075EF12 /* VoltaserveCore */; };
 		89B47BF92E07F5D5002C5C9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89B47BF02E07F5D5002C5C9C /* Assets.xcassets */; };
-		89FE5C672E0FCAF1009AC575 /* VoltaserveCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8987EFD82E07175E009486E7 /* VoltaserveCore */; };
-		89FE5C682E0FCAF1009AC575 /* VoltaserveCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8913BC952E07E30A000D8FE2 /* VoltaserveCore */; };
-		89FE5C692E0FCAF1009AC575 /* VoltaserveCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8913BCB32E07E91E000D8FE2 /* VoltaserveCore */; };
-		89FE5C6A2E0FCAF1009AC575 /* VoltaserveCore in Frameworks */ = {isa = PBXBuildFile; productRef = 89562EE72E09F43C00AB1580 /* VoltaserveCore */; };
+		89FE5CCE2E1131CB009AC575 /* VoltaserveCore in Frameworks */ = {isa = PBXBuildFile; productRef = 89FE5CCD2E1131CB009AC575 /* VoltaserveCore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,11 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89FE5C6A2E0FCAF1009AC575 /* VoltaserveCore in Frameworks */,
-				89FE5C692E0FCAF1009AC575 /* VoltaserveCore in Frameworks */,
-				89FE5C682E0FCAF1009AC575 /* VoltaserveCore in Frameworks */,
-				89FE5C672E0FCAF1009AC575 /* VoltaserveCore in Frameworks */,
-				8971885C2E0DA2FB0075EF12 /* VoltaserveCore in Frameworks */,
+				89FE5CCE2E1131CB009AC575 /* VoltaserveCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +87,7 @@
 				8913BCB32E07E91E000D8FE2 /* VoltaserveCore */,
 				89562EE72E09F43C00AB1580 /* VoltaserveCore */,
 				8971885B2E0DA2FB0075EF12 /* VoltaserveCore */,
+				89FE5CCD2E1131CB009AC575 /* VoltaserveCore */,
 			);
 			productName = VoltaserveMac;
 			productReference = 898EE5E42E0701630066013E /* Voltaserve.app */;
@@ -125,7 +118,7 @@
 			mainGroup = 898EE5DB2E0701620066013E;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				8971885A2E0DA2FB0075EF12 /* XCLocalSwiftPackageReference "../voltaserve-core" */,
+				89FE5CCC2E1131CB009AC575 /* XCRemoteSwiftPackageReference "voltaserve-core" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 898EE5E52E0701630066013E /* Products */;
@@ -362,12 +355,16 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		8971885A2E0DA2FB0075EF12 /* XCLocalSwiftPackageReference "../voltaserve-core" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = "../voltaserve-core";
+/* Begin XCRemoteSwiftPackageReference section */
+		89FE5CCC2E1131CB009AC575 /* XCRemoteSwiftPackageReference "voltaserve-core" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kouprlabs/voltaserve-core.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
 		};
-/* End XCLocalSwiftPackageReference section */
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		8913BC952E07E30A000D8FE2 /* VoltaserveCore */ = {
@@ -388,6 +385,11 @@
 		};
 		8987EFD82E07175E009486E7 /* VoltaserveCore */ = {
 			isa = XCSwiftPackageProductDependency;
+			productName = VoltaserveCore;
+		};
+		89FE5CCD2E1131CB009AC575 /* VoltaserveCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 89FE5CCC2E1131CB009AC575 /* XCRemoteSwiftPackageReference "voltaserve-core" */;
 			productName = VoltaserveCore;
 		};
 /* End XCSwiftPackageProductDependency section */
