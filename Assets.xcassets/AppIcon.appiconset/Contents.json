@@ -1,68 +1,74 @@
 {
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
   "images" : [
     {
-      "filename" : "voltaserve-cube-16.png",
-      "idiom" : "mac",
+      "filename" : "icon_1024.png",
       "scale" : "1x",
-      "size" : "16x16"
+      "size" : "1024x1024",
+      "idiom" : "ios-marketing"
     },
     {
-      "filename" : "voltaserve-cube-32 1.png",
+      "scale" : "1x",
+      "size" : "16x16",
       "idiom" : "mac",
+      "filename" : "icon_16.png"
+    },
+    {
       "scale" : "2x",
-      "size" : "16x16"
+      "size" : "16x16",
+      "filename" : "icon_32.png",
+      "idiom" : "mac"
     },
     {
-      "filename" : "voltaserve-cube-32.png",
       "idiom" : "mac",
       "scale" : "1x",
+      "size" : "32x32",
+      "filename" : "icon_32.png"
+    },
+    {
+      "idiom" : "mac",
+      "filename" : "icon_64.png",
+      "scale" : "2x",
       "size" : "32x32"
     },
     {
-      "filename" : "voltaserve-cube-64.png",
-      "idiom" : "mac",
-      "scale" : "2x",
-      "size" : "32x32"
-    },
-    {
-      "filename" : "voltaserve-cube-128.png",
-      "idiom" : "mac",
       "scale" : "1x",
-      "size" : "128x128"
-    },
-    {
-      "filename" : "voltaserve-cube-256 1.png",
       "idiom" : "mac",
-      "scale" : "2x",
-      "size" : "128x128"
+      "size" : "128x128",
+      "filename" : "icon_128.png"
     },
     {
-      "filename" : "voltaserve-cube-256.png",
+      "size" : "128x128",
+      "filename" : "icon_256.png",
+      "scale" : "2x",
+      "idiom" : "mac"
+    },
+    {
+      "filename" : "icon_256.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "256x256"
     },
     {
-      "filename" : "voltaserve-cube-512.png",
-      "idiom" : "mac",
       "scale" : "2x",
+      "filename" : "icon_512.png",
+      "idiom" : "mac",
       "size" : "256x256"
     },
     {
-      "filename" : "voltaserve-cube-512 1.png",
+      "size" : "512x512",
+      "filename" : "icon_512.png",
       "idiom" : "mac",
-      "scale" : "1x",
-      "size" : "512x512"
+      "scale" : "1x"
     },
     {
-      "filename" : "voltaserve-cube.png",
-      "idiom" : "mac",
       "scale" : "2x",
+      "filename" : "icon_1024.png",
+      "idiom" : "mac",
       "size" : "512x512"
     }
-  ],
-  "info" : {
-    "author" : "xcode",
-    "version" : 1
-  }
+  ]
 }
