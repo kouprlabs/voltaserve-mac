@@ -21,6 +21,7 @@ struct VoltaserveMacApp: App {
     @StateObject private var workspaceStore = WorkspaceStore()
     @StateObject private var workspaceCreateStore = WorkspaceCreateStore()
     @StateObject private var groupStore = GroupStore()
+    @StateObject private var groupCreateStore = GroupCreateStore()
     @StateObject private var organizationStore = OrganizationStore()
 
     var body: some Scene {
@@ -32,6 +33,7 @@ struct VoltaserveMacApp: App {
             workspaceStore: workspaceStore,
             workspaceCreateStore: workspaceCreateStore,
             groupStore: groupStore,
+            groupCreateStore: groupCreateStore,
             organizationStore: organizationStore
         )
     }
