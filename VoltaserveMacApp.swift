@@ -19,10 +19,9 @@ struct VoltaserveMacApp: App {
     @Environment(\.dismissWindow) private var dismissWindow
     @StateObject private var sessionStore = SessionStore()
     @StateObject private var workspaceStore = WorkspaceStore()
-    @StateObject private var workspaceCreateStore = WorkspaceCreateStore()
     @StateObject private var groupStore = GroupStore()
-    @StateObject private var groupCreateStore = GroupCreateStore()
     @StateObject private var organizationStore = OrganizationStore()
+    @StateObject private var userStore = UserStore()
 
     var body: some Scene {
         voltaserveMac(
@@ -31,10 +30,9 @@ struct VoltaserveMacApp: App {
             dismissWindow: dismissWindow,
             sessionStore: sessionStore,
             workspaceStore: workspaceStore,
-            workspaceCreateStore: workspaceCreateStore,
             groupStore: groupStore,
-            groupCreateStore: groupCreateStore,
-            organizationStore: organizationStore
+            organizationStore: organizationStore,
+            userStore: userStore
         )
     }
 }
