@@ -15,26 +15,14 @@ import VoltaserveCore
 @main
 struct VoltaserveMacApp: App {
     @Environment(\.modelContext) private var context
-    @Environment(\.openWindow) private var openWindow
-    @Environment(\.dismissWindow) private var dismissWindow
     @StateObject private var sessionStore = SessionStore()
-    @StateObject private var workspaceStore = WorkspaceStore()
-    @StateObject private var groupStore = GroupStore()
-    @StateObject private var organizationStore = OrganizationStore()
-    @StateObject private var userStore = UserStore()
-    @StateObject private var accountOverviewStore = AccountOverviewStore()
+    @StateObject private var storeRegistry = StoreRegistry()
 
     var body: some Scene {
         voltaserveMac(
             context: context,
-            openWindow: openWindow,
-            dismissWindow: dismissWindow,
             sessionStore: sessionStore,
-            workspaceStore: workspaceStore,
-            groupStore: groupStore,
-            organizationStore: organizationStore,
-            userStore: userStore,
-            accountOverviewStore: accountOverviewStore
+            storeRegistry: storeRegistry
         )
     }
 }
