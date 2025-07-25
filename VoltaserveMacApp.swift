@@ -16,12 +16,14 @@ import VoltaserveCore
 struct VoltaserveMacApp: App {
     @Environment(\.modelContext) private var context
     @StateObject private var sessionStore = SessionStore()
+    @StateObject private var uploadStore = UploadStore()
     @StateObject private var storeRegistry = StoreRegistry()
 
     var body: some Scene {
         voltaserveMac(
             context: context,
             sessionStore: sessionStore,
+            uploadStore: uploadStore,
             storeRegistry: storeRegistry
         )
     }
