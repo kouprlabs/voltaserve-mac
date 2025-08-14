@@ -14,6 +14,7 @@ import VoltaserveCore
 @available(macOS 15.0, *)
 @main
 struct VoltaserveMacApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.modelContext) private var context
     @StateObject private var sessionStore = SessionStore()
     @StateObject private var uploadStore = UploadStore()
@@ -26,5 +27,11 @@ struct VoltaserveMacApp: App {
             uploadStore: uploadStore,
             storeRegistry: storeRegistry
         )
+    }
+}
+
+final class AppDelegate: NSObject, NSApplicationDelegate {
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        NSWindow.allowsAutomaticWindowTabbing = false
     }
 }
